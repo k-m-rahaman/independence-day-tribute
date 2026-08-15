@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proud Indian | A Tribute to Our Freedom Fighters</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,500;1,700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --saffron: #FF671F;
+      --saffron-light: #ff9933;
+      --white: #FFFFFF;
+      --green: #046A38;
+      --green-light: #138808;
+      --navy: #06038D;
+      --dark-bg: #07090e;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --card-border: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--dark-bg);
+      color: #e5e7eb;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Ambient Tricolor Glows */
+    .glow-saffron {
+      position: fixed;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255, 103, 31, 0.15) 0%, rgba(0,0,0,0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .glow-green {
+      position: fixed;
+      bottom: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(4, 106, 56, 0.15) 0%, rgba(0,0,0,0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Waving Flag CSS */
+    .flag-container {
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: center;
+      perspective: 1000px;
+    }
+
+    .indian-flag {
+      width: 180px;
+      height: 120px;
+      background: linear-gradient(to bottom, var(--saffron) 33.33%, #fff 33.33%, #fff 66.66%, var(--green) 66.66%);
+      position: relative;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.2);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-origin: left center;
+      animation: waveFlag 4s ease-in-out infinite;
+    }
+
+    .indian-flag::before {
+      content: "";
+      position: absolute;
+      left: -6px;
+      top: -10px;
+      bottom: -100px;
+      width: 6px;
+      background: linear-gradient(to right, #8a8a8a, #d4d4d4, #8a8a8a);
+      border-radius: 3px;
+    }
+
+    /* The Upgraded 24-Spoke Ashoka Chakra */
+    .chakra {
+      width: 38px;
+      height: 38px;
+      border: 2px solid var(--navy);
+      border-radius: 50%;
+      position: relative;
+      animation: spinChakra 20s linear infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chakra::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: repeating-conic-gradient(
+        from -0.5deg,
+        var(--navy) 0deg 1.5deg,
+        transparent 1.5deg 15deg
+      );
+    }
+
+    .chakra::after {
+      content: "";
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      background: var(--navy);
+      border-radius: 50%;
+    }
+
+    @keyframes waveFlag {
+      0%, 100% { transform: rotateY(0deg) rotateZ(0deg) translateZ(0); }
+      50% { transform: rotateY(15deg) rotateZ(2deg) translateZ(10px); }
+    }
+
+    @keyframes spinChakra {
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 0 40px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 999px;
+      background: rgba(255, 103, 31, 0.1);
+      border: 1px solid rgba(255, 103, 31, 0.3);
+      color: var(--saffron-light);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.8rem, 7vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--saffron-light) 0%, #FFFFFF 50%, var(--green-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 50px rgba(255, 153, 51, 0.2);
+    }
+
+    .hero-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: #cbd5e1;
+      max-width: 750px;
+      margin-bottom: 45px;
+      line-height: 1.8;
+    }
+
+    .hero-quote strong {
+      color: #fff;
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    /* Counter Card */
+    .counter-box {
+      background: rgba(12, 15, 24, 0.8);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(20px);
+      padding: 40px 50px;
+      border-radius: 24px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .counter-box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--saffron), #ffffff, var(--green));
+    }
+
+    .counter-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #94a3b8;
+      margin-bottom: 10px;
+    }
+
+    .counter-number {
+      font-size: clamp(3.5rem, 8vw, 5.5rem);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -2px;
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 24px;
+      text-shadow: 0 0 40px rgba(255, 255, 255, 0.25);
+    }
+
+    .pledge-btn {
+      background: linear-gradient(135deg, var(--saffron) 0%, #d85413 100%);
+      color: #ffffff;
+      border: none;
+      padding: 18px 45px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 10px 35px rgba(255, 103, 31, 0.4);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .pledge-btn:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 15px 45px rgba(255, 103, 31, 0.6);
+    }
+
+    .pledge-btn.voted {
+      background: linear-gradient(135deg, var(--green) 0%, #03522b 100%);
+      box-shadow: 0 10px 35px rgba(4, 106, 56, 0.4);
+      cursor: default;
+      transform: none;
+    }
+
+    /* Section Styling */
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.6rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+
+    .section-header p {
+      color: #94a3b8;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* INFINITE SLOW-SCROLLING MARQUEE */
+    .marquee-container {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      overflow: hidden;
+      padding: 20px 0;
+      mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 28px;
+      width: max-content;
+      animation: scrollLeft 55s linear infinite;
+    }
+
+    .marquee-container:hover .marquee-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes scrollLeft {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .hero-card {
+      width: 340px;
+      flex-shrink: 0;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 32px;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .hero-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 153, 51, 0.5);
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .hero-card h3 {
+      font-size: 1.35rem;
+      color: var(--saffron-light);
+      margin-bottom: 6px;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+    }
+
+    .hero-card .tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #a7f3d0;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .hero-card p {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      font-style: italic;
+      line-height: 1.6;
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Timeline Section */
+    .timeline {
+      position: relative;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 20px;
+      width: 3px;
+      background: linear-gradient(180deg, var(--saffron), #ffffff, var(--green));
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 50px;
+      padding-left: 70px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 7px;
+      top: 6px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--dark-bg);
+      border: 4px solid var(--saffron);
+      box-shadow: 0 0 15px rgba(255, 103, 31, 0.5);
+    }
+
+    .timeline-content {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 30px;
+      transition: transform 0.3s;
+    }
+
+    .timeline-content:hover {
+      transform: translateX(8px);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .timeline-year {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--saffron-light);
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+      font-family: 'Cinzel', serif;
+    }
+
+    .timeline-title {
+      font-size: 1.4rem;
+      color: #ffffff;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .timeline-desc {
+      color: #94a3b8;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 50px 0;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 640px) {
+      .counter-box {
+        padding: 30px 20px;
+        width: 100%;
+      }
+      .pledge-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-saffron"></div>
+  <div class="glow-green"></div>
+
+  <div class="container">
+    
+    <!-- Hero Section -->
+    <header class="hero">
+      
+      <!-- Waving Flag Elements -->
+      <div class="flag-container">
+        <div class="indian-flag">
+          <div class="chakra"></div>
+        </div>
+      </div>
+      
+      <div class="hero-badge">A Tribute to the Motherland</div>
+      <h1>Born of Blood, <br>Forged in Freedom</h1>
+      
+      <p class="hero-quote">
+        "Our flag does not fly because the wind moves it; <strong>it flies with the last breath of every martyr who died protecting it.</strong> Today, we do not just celebrate freedom—we honor the unbreakable spirit of India."
+      </p>
+
+      <!-- Live Counter Box -->
+      <div class="counter-box">
+        <div class="counter-title">Hearts Beating for India</div>
+        <div class="counter-number" id="voteCount">1,947</div>
+        <button class="pledge-btn" id="pledgeBtn">
+          <span>🇮🇳</span> I am a Proud Indian
+        </button>
+      </div>
+    </header>
+
+    <!-- Infinite Scrolling Freedom Fighters Marquee -->
+    <section class="section">
+      <div class="section-header">
+        <h2>The Immortals of Azadi</h2>
+        <p>They embraced death so that a nation could breathe. Their words remain the eternal heartbeat of our democracy.</p>
+      </div>
+
+      <div class="marquee-container">
+        <div class="marquee-track">
+          <!-- Set 1 -->
+          <div class="hero-card">
+            <h3>Bhagat Singh</h3>
+            <span class="tag">The Smiling Martyr</span>
+            <p>"They may kill me, but they cannot kill my ideas. They can crush my body, but they will never crush my spirit."</p>
+          </div>
+
+          <div class="hero-card">
+            <h3>Netaji Subhash Chandra Bose</h3>
+            <span class="tag">The Supreme Commander</span>
+            <p>"Give me blood and I will give you freedom! One individual may die, but that idea will incarnate itself in a thousand lives."</p>
+          </div>
+
+          <div class="hero-card">
+            <h3>Mahatma Gandhi</h3>
+            <span class="tag">The Soul of India</span>
+            <p>"Freedom is never dear at any price. It is the breath of life. What would a man not pay for living?"</p>
+          </div>
+
+          <div class="hero-card">
+            <h3>Rani Lakshmibai</h3>
+            <span class="tag">The Warrior Queen</span>
+            <p>"I shall not surrender my Jhansi. We fought with our blood and will defend our sacred soil till our last breath."</p>
+          </div>
+
+          <div class="hero-card">
+            <h3>Sardar Vallabhbhai Patel</h3>
+            <span class="tag">The Iron Unifier</span>
+            <p>"Every Indian should now forget that he is a Rajput, a Sikh, or a Jat. He must remember that he is an Indian and he has every right in his country but with certain duties."</p>
+          </div>
+
+          <div class="hero-card">
+            <h3>Chandra Shekhar Azad</h3>
+            <span class="tag">The Unconquered Fire</span>
+            <p>"Dushman ki goliyon ka hum samna karenge, Azad hi rahe hain, azad hi rahenge! (We will face the enemy's bullets; we are free and will remain free!)"</p>
+          </div>
+
+          <div class="hero-card">
+            <h3>Dr. B.R. Ambedkar</h3>
+            <span class="tag">The Architect of Equality</span>
+            <p>"Freedom of mind is the real freedom. A person whose mind is not free, though he may not be in chains, is a slave."</p>
+          </div>
+
+          <!-- Duplicate Set for Seamless Loop -->
+          <div class="hero-card">
+            <h3>Bhagat Singh</h3>
+            <span class="tag">The Smiling Martyr</span>
+            <p>"They may kill me, but they cannot kill my ideas. They can crush my body, but they will never crush my spirit."</p>
+          </div>
+
+          <div class="hero-card">
+            <h3>Netaji Subhash Chandra Bose</h3>
+            <span class="tag">The Supreme Commander</span>
+            <p>"Give me blood and I will give you freedom! One individual may die, but that idea will incarnate itself in a thousand lives."</p>
+          </div>
+
+          <div class="hero-card">
+            <h3>Mahatma Gandhi</h3>
+            <span class="tag">The Soul of India</span>
+            <p>"Freedom is never dear at any price. It is the breath of life. What would a man not pay for living?"</p>
+          </div>
+
+          <div class="hero-card">
+            <h3>Rani Lakshmibai</h3>
+            <span class="tag">The Warrior Queen</span>
+            <p>"I shall not surrender my Jhansi. We fought with our blood and will defend our sacred soil till our last breath."</p>
+          </div>
+
+          <div class="hero-card">
+            <h3>Sardar Vallabhbhai Patel</h3>
+            <span class="tag">The Iron Unifier</span>
+            <p>"Every Indian should now forget that he is a Rajput, a Sikh, or a Jat. He must remember that he is an Indian and he has every right in his country but with certain duties."</p>
+          </div>
+
+          <div class="hero-card">
+            <h3>Chandra Shekhar Azad</h3>
+            <span class="tag">The Unconquered Fire</span>
+            <p>"Dushman ki goliyon ka hum samna karenge, Azad hi rahe hain, azad hi rahenge! (We will face the enemy's bullets; we are free and will remain free!)"</p>
+          </div>
+
+          <div class="hero-card">
+            <h3>Dr. B.R. Ambedkar</h3>
+            <span class="tag">The Architect of Equality</span>
+            <p>"Freedom of mind is the real freedom. A person whose mind is not free, though he may not be in chains, is a slave."</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Freedom Timeline -->
+    <section class="section">
+      <div class="section-header">
+        <h2>The Price of Freedom</h2>
+        <p>Centuries of struggle etched in time. We remember the milestones that shattered the chains of empire.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">1857</div>
+            <h3 class="timeline-title">The First Cry of Rebellion</h3>
+            <p class="timeline-desc">The Sepoy Mutiny erupted into the First War of Independence. From the streets of Meerut to the courts of Delhi, the seed of sovereign India was planted in blood and fire.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">1919</div>
+            <h3 class="timeline-title">The Tears of Jallianwala Bagh</h3>
+            <p class="timeline-desc">Hundreds of innocent men, women, and children were massacred in Amritsar. The tragedy shook the soul of the nation, transforming a movement into an unstoppable demand for Poorna Swaraj (Complete Independence).</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">1930</div>
+            <h3 class="timeline-title">The March to the Sea</h3>
+            <p class="timeline-desc">Armed with nothing but truth and walking sticks, thousands marched 240 miles to Dandi to defy the British salt monopoly, showing the world the unmatched power of non-violent resistance.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">1942</div>
+            <h3 class="timeline-title">The Final Ultimatum</h3>
+            <p class="timeline-desc">With the historic cry of "Do or Die," the Quit India Movement brought the empire to its knees. Millions flooded the streets, ready to face the gallows rather than live another day in subjugation.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">August 15, 1947</div>
+            <h3 class="timeline-title">Awakening to Life and Freedom</h3>
+            <p class="timeline-desc">At the stroke of the midnight hour, the tricolor unfurled over a free nation. India awoke from the dark night of colonialism to take her rightful place in the world.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Dedicated to the immortal spirit of India's Freedom Fighters • Jai Hind • Vande Mataram</p>
+    </footer>
+  </div>
+
+  <!-- Firebase Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
+  <script>
+    // ----------------------------------------------------
+    // YOUR EXACT FIREBASE CONFIGURATION (From Image)
+    // ----------------------------------------------------
+    const firebaseConfig = {
+      apiKey: "AIzaSyB9HH3anyYnb7HeYUrp29JMesMGR3SeeS0",
+      authDomain: "proud-indian-counter.firebaseapp.com",
+      databaseURL: "https://proud-indian-counter-default-rtdb.firebaseio.com",
+      projectId: "proud-indian-counter",
+      storageBucket: "proud-indian-counter.firebasestorage.app",
+      messagingSenderId: "295364295769",
+      appId: "1:295364295769:web:dd16799b9c84aabe018548"
+    };
+
+    // Initialize Firebase Realtime Database
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+    const counterRef = database.ref('proud_indian_votes');
+
+    const voteDisplay = document.getElementById('voteCount');
+    const pledgeBtn = document.getElementById('pledgeBtn');
+
+    // UI state helper
+    function markAsPledged() {
+      pledgeBtn.innerHTML = "<span>❤️</span> We Bow to the Motherland";
+      pledgeBtn.classList.add('voted');
+      pledgeBtn.disabled = true;
+    }
+
+    // Check if current user already voted locally
+    if (localStorage.getItem('hasVotedProudIndian')) {
+      markAsPledged();
+    }
+
+    // Listen to live database updates across all visitors globally
+    counterRef.on('value', (snapshot) => {
+      const val = snapshot.val();
+      voteDisplay.innerText = val ? val.toLocaleString() : "1,947";
+    });
+
+    // On Button Click (Atomic transaction for perfect accuracy)
+    pledgeBtn.addEventListener('click', () => {
+      if (localStorage.getItem('hasVotedProudIndian')) return;
+
+      counterRef.transaction((currentValue) => {
+        return (currentValue || 1947) + 1;
+      });
+
+      localStorage.setItem('hasVotedProudIndian', 'true');
+      markAsPledged();
+    });
+  </script>
+</body>
+</html>
